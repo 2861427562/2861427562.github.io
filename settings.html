@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>设置 - 个人空间</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-content">
+            <div class="logo">我的空间</div>
+            <div class="nav-links">
+                <a href="index.html">首页</a>
+                <a href="works.html">作品上传</a>
+                <a href="bookmarks.html">收藏夹</a>
+                <a href="settings.html" class="settings-btn active">
+                    <i class="fas fa-cog"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="section">
+            <h2>个人信息设置</h2>
+            <div class="settings-container">
+                <div class="avatar-settings">
+                    <img id="avatarPreview" src="default-avatar.png" alt="头像预览">
+                    <button onclick="document.getElementById('avatarInput').click()" class="upload-btn">
+                        <i class="fas fa-camera"></i> 更换头像
+                    </button>
+                    <input type="file" id="avatarInput" hidden accept="image/*">
+                </div>
+                <div class="info-settings">
+                    <div class="setting-item">
+                        <label>名字</label>
+                        <input type="text" id="nameInput" placeholder="输入你的名字">
+                    </div>
+                    <div class="setting-item">
+                        <label>个人简介</label>
+                        <textarea id="bioInput" placeholder="写一段个人简介..."></textarea>
+                    </div>
+                    <button onclick="saveSettings()" class="save-btn">
+                        <i class="fas fa-save"></i> 保存设置
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="settings.js"></script>
+</body>
+</html> 

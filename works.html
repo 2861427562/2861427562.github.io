@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作品上传 - 个人空间</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-content">
+            <div class="logo">我的空间</div>
+            <div class="nav-links">
+                <a href="index.html">首页</a>
+                <a href="works.html" class="active">作品上传</a>
+                <a href="bookmarks.html">收藏夹</a>
+                <a href="settings.html" class="settings-btn">
+                    <i class="fas fa-cog"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="section">
+            <h2>上传新作品</h2>
+            <div class="work-form">
+                <input type="text" id="workTitle" placeholder="作品标题">
+                <textarea id="workDescription" placeholder="作品描述..."></textarea>
+                <div class="upload-container">
+                    <input type="file" id="workInput" hidden accept="image/*" multiple>
+                    <button onclick="document.getElementById('workInput').click()" class="upload-btn">
+                        <i class="fas fa-images"></i> 选择图片
+                    </button>
+                </div>
+                <div class="preview-images" id="previewImages"></div>
+                <div class="form-actions">
+                    <button onclick="saveWork()" class="save-btn">
+                        <i class="fas fa-save"></i> 保存作品
+                    </button>
+                    <button onclick="clearWorkForm()" class="cancel-btn">
+                        <i class="fas fa-times"></i> 清空
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="works.js"></script>
+</body>
+</html> 
