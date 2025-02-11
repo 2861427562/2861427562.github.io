@@ -1,0 +1,189 @@
+/* 设置页面布局 */
+.settings-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2.5rem;
+    background: var(--surface);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.settings-container:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+/* 头像设置区域 */
+.avatar-settings {
+    text-align: center;
+    padding: 2rem;
+    margin-bottom: 2.5rem;
+    background: var(--background);
+    border-radius: var(--radius);
+    border: 2px dashed var(--border);
+    transition: var(--transition);
+}
+
+.avatar-settings:hover {
+    border-color: var(--primary-color);
+    background: var(--primary-light);
+}
+
+#avatarPreview {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow);
+    border: 4px solid var(--surface);
+    transition: var(--transition);
+}
+
+#avatarPreview:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-hover);
+}
+
+.upload-btn {
+    background: var(--primary-color);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius);
+    font-size: 1.1rem;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.upload-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.upload-btn i {
+    font-size: 1.2rem;
+}
+
+/* 信息设置区域 */
+.info-settings {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.setting-item {
+    background: var(--background);
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    transition: var(--transition);
+}
+
+.setting-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.setting-item label {
+    display: block;
+    margin-bottom: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.setting-item input,
+.setting-item textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    background: var(--surface);
+    transition: var(--transition);
+}
+
+.setting-item input:focus,
+.setting-item textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px var(--primary-light);
+}
+
+.setting-item textarea {
+    height: 120px;
+    resize: vertical;
+    min-height: 80px;
+    max-height: 200px;
+}
+
+/* 保存按钮 */
+.save-btn {
+    margin-top: 1.5rem;
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.save-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.save-btn i {
+    font-size: 1.2rem;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .settings-container {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+    
+    .avatar-settings {
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+    }
+    
+    #avatarPreview {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .setting-item {
+        padding: 1rem;
+    }
+}
+
+/* 动画效果 */
+.settings-container {
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+} 

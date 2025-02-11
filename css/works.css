@@ -1,0 +1,185 @@
+/* 作品上传表单样式 */
+.work-form {
+    background: var(--surface);
+    padding: 2.5rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    max-width: 900px;
+    margin: 0 auto;
+    transition: var(--transition);
+}
+
+.work-form:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+.upload-container {
+    text-align: center;
+    padding: 2rem;
+    background: var(--background);
+    border-radius: var(--radius);
+    border: 2px dashed var(--border);
+    margin-bottom: 1.5rem;
+    transition: var(--transition);
+}
+
+.upload-container:hover {
+    border-color: var(--primary-color);
+    background: var(--primary-light);
+}
+
+.upload-btn {
+    font-size: 1.1rem;
+    padding: 1rem 2rem;
+    background: var(--primary-color);
+    color: white;
+    border-radius: var(--radius);
+    transition: var(--transition);
+}
+
+.upload-btn i {
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+}
+
+.preview-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background: var(--background);
+    border-radius: var(--radius);
+    min-height: 200px;
+}
+
+.preview-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.preview-image:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-hover);
+}
+
+.form-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.save-btn {
+    background: var(--primary-color);
+}
+
+.cancel-btn {
+    background: #dc3545;
+}
+
+.cancel-btn:hover {
+    background: #c82333;
+}
+
+/* 作品展示网格 */
+.works-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 1.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.work-item {
+    position: relative;
+    aspect-ratio: 1;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    background: var(--background);
+}
+
+.work-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.delete-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(220, 53, 69, 0.9);
+    color: white;
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+}
+
+.work-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.work-item:hover img {
+    transform: scale(1.1);
+}
+
+.work-item:hover .delete-btn {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.delete-btn:hover {
+    background: rgba(220, 53, 69, 1);
+    transform: rotate(90deg);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .work-form {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+    
+    .upload-container {
+        padding: 1.5rem;
+    }
+    
+    .preview-images {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 1rem;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .form-actions button {
+        width: 100%;
+    }
+    
+    .works-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1rem;
+        padding: 1rem;
+    }
+} 

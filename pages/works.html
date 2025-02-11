@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作品展示 - 我的个人空间</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/works.css">
+</head>
+<body>
+    <!-- 添加侧边栏 -->
+    <div class="sidebar">
+        <div class="sidebar-content">
+            <div class="sidebar-profile">
+                <img id="sidebarAvatar" src="../images/default-avatar.jpg" alt="头像">
+                <h3 id="sidebarName">你的名字</h3>
+                <p id="sidebarBio">这里写一段个人简介...</p>
+            </div>
+            <div class="sidebar-info">
+                <p>最后更新：<span id="lastUpdate">暂无更新</span></p>
+            </div>
+        </div>
+    </div>
+
+    <nav class="top-nav">
+        <div class="nav-content">
+            <div class="logo">我的空间</div>
+            <div class="nav-links">
+                <a href="../index.html">首页</a>
+                <a href="works.html" class="active">作品上传</a>
+                <a href="bookmarks.html">收藏夹</a>
+                <a href="settings.html" class="settings-btn">
+                    <i class="fas fa-cog"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="section">
+            <h2>作品上传</h2>
+            <div class="work-form">
+                <div class="upload-container">
+                    <button onclick="document.getElementById('workImages').click()" class="upload-btn">
+                        <i class="fas fa-cloud-upload-alt"></i> 上传作品图片
+                    </button>
+                    <input type="file" id="workImages" hidden multiple accept="image/*">
+                </div>
+                <div class="preview-images" id="imagePreview"></div>
+                <div class="form-actions">
+                    <button onclick="uploadWork()" class="save-btn">
+                        <i class="fas fa-save"></i> 保存作品
+                    </button>
+                    <button onclick="cancelUpload()" class="cancel-btn">
+                        <i class="fas fa-times"></i> 取消
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>我的作品</h2>
+            <div id="worksGrid" class="works-grid"></div>
+        </section>
+    </div>
+
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="../js/works.js"></script>
+</body>
+</html> 

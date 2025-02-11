@@ -1,0 +1,269 @@
+/* 收藏添加表单 */
+.bookmark-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: var(--surface);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.bookmark-form:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+.bookmark-form input,
+.bookmark-form textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--background);
+    transition: var(--transition);
+}
+
+.bookmark-form input:focus,
+.bookmark-form textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px var(--primary-light);
+}
+
+/* 预览容器样式 */
+.preview-container {
+    text-align: center;
+    padding: 2rem;
+    background: var(--background);
+    border-radius: var(--radius);
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed var(--border);
+    transition: var(--transition);
+    position: relative;
+    cursor: pointer;
+}
+
+.preview-container:hover {
+    border-color: var(--primary-color);
+    background: var(--primary-light);
+}
+
+.upload-hint {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    color: var(--text-secondary);
+}
+
+.upload-hint i {
+    font-size: 2.5rem;
+}
+
+.upload-hint span {
+    font-size: 0.9rem;
+}
+
+#previewImage {
+    max-width: 100%;
+    height: auto;
+    max-height: 300px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    display: none;
+}
+
+.preview-delete-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(220, 53, 69, 0.9);
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.preview-delete-btn:hover {
+    background: #dc3545;
+    transform: rotate(90deg);
+}
+
+/* 加载和错误状态 */
+.loading-preview,
+.preview-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    color: var(--text-secondary);
+}
+
+.loading-preview i,
+.preview-error i {
+    font-size: 2rem;
+}
+
+.loading-preview span,
+.preview-error span {
+    font-size: 0.9rem;
+}
+
+.preview-error {
+    color: #dc3545;
+}
+
+.preview-error i {
+    color: #dc3545;
+}
+
+/* 收藏列表样式 */
+.bookmarks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+    padding: 1.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.bookmark-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+}
+
+.bookmark-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.bookmark-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid var(--border);
+    transition: var(--transition);
+}
+
+.bookmark-card:hover .bookmark-image {
+    transform: scale(1.05);
+}
+
+.bookmark-content {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.bookmark-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    transition: var(--transition);
+}
+
+.bookmark-card:hover .bookmark-title {
+    color: var(--primary-color);
+}
+
+.bookmark-desc {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    flex: 1;
+}
+
+.bookmark-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+}
+
+.bookmark-date {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.bookmark-buttons {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.visit-btn,
+.delete-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    color: white;
+    cursor: pointer;
+}
+
+.visit-btn {
+    background: var(--primary-color);
+}
+
+.delete-btn {
+    background: #dc3545;
+}
+
+.visit-btn:hover,
+.delete-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.visit-btn:hover {
+    background: var(--primary-dark);
+}
+
+.delete-btn:hover {
+    background: #c82333;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .bookmark-form {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+    
+    .bookmarks-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    
+    .bookmark-content {
+        padding: 1rem;
+    }
+    
+    .bookmark-image {
+        height: 180px;
+    }
+} 
