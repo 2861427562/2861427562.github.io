@@ -176,6 +176,9 @@ window.onload = function() {
     // 显示作品
     displayWorks();
     
+    // 显示收藏夹
+    displayBookmarks();
+    
     // 默认收起设置面板
     document.querySelector('.settings-container').classList.add('collapsed');
 };
@@ -200,5 +203,36 @@ function displayProfile() {
 window.addEventListener('storage', function(e) {
     if (e.key === 'profile') {
         displayProfile();
+    }
+});
+
+// 显示收藏列表
+function displayBookmarks() {
+    const bookmarksList = document.getElementById('bookmarksList');
+    let bookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
+    
+    // 只显示最新的6个收藏
+    bookmarks = bookmarks.slice(0, 6);
+
+    bookmarksList.innerHTML = bookmarks.map((bookmark, index) => `
+        <div class="bookmark-card">
+            <img src="${bookmark.preview || 'default-preview.png'}" alt="${bookmark.title}" class="bookmark-image">
+            <div class="bookmark-content">
+                <h3 class="bookmark-title">
+                    <a href="${bookmark.url}" target="_blank">${bookmark.title}</a>
+                </h3>
+                <p class="bookmark-desc">${bookmark.desc}</p>
+                <div class="bookmark-actions">
+                    <span class="bookmark-date">${bookmark.timestamp}</span>
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+// 监听 localStorage 的变化，更新收藏夹显示
+window.addEventListener('storage', function(e) {
+    if (e.key === 'bookmarks') {
+        displayBookmarks();
     }
 }); 
