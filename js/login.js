@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const password = document.getElementById('password').value;
 
         try {
-            const response = await fetch('/api/login', {
+            const response = await fetch('http://localhost:3000/api/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 localStorage.setItem('token', data.token);
                 
                 // 获取用户信息
-                const userResponse = await fetch('/api/user', {
+                const userResponse = await fetch('http://localhost:3000/api/user', {
                     headers: {
                         'Authorization': `Bearer ${data.token}`
                     }
@@ -64,13 +64,23 @@ document.addEventListener('DOMContentLoaded', () => {
         const password = document.getElementById('regPassword').value;
         const confirmPassword = document.getElementById('confirmPassword').value;
 
+        if (!username || !password) {
+            alert('用户名和密码不能为空');
+            return;
+        }
+
+        if (password.length < 6) {
+            alert('密码长度至少为6位');
+            return;
+        }
+
         if (password !== confirmPassword) {
             alert('两次输入的密码不一致');
             return;
         }
 
         try {
-            const response = await fetch('/api/register', {
+            const response = await fetch('http://localhost:3000/api/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -79,14 +89,16 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             const data = await response.json();
+            
             if (response.ok) {
                 alert('注册成功，请登录');
                 loginForm.style.display = 'block';
                 registerForm.style.display = 'none';
             } else {
-                alert(data.message);
+                alert(data.message || '注册失败，请稍后重试');
             }
         } catch (error) {
+            console.error('注册错误:', error);
             alert('注册失败，请稍后重试');
         }
     });
