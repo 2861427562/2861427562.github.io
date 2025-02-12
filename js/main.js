@@ -1,5 +1,10 @@
-// 初始化
+// 在文件开头添加登录验证
 document.addEventListener('DOMContentLoaded', () => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        window.location.href = 'login.html';
+        return;
+    }
     // 加载用户设置
     loadSettings();
     
