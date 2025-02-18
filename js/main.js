@@ -1,10 +1,5 @@
-// 在文件开头添加登录验证
+// 初始化
 document.addEventListener('DOMContentLoaded', () => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-        window.location.href = 'login.html';
-        return;
-    }
     // 加载用户设置
     loadSettings();
     
@@ -61,22 +56,36 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// 加载用户设置
+// 获取DOM元素
+const avatar = document.getElementById('avatar');
+const nameDisplay = document.getElementById('nameDisplay');
+const bioDisplay = document.getElementById('bioDisplay');
+const sidebarAvatar = document.getElementById('sidebarAvatar');
+const sidebarName = document.getElementById('sidebarName');
+const sidebarBio = document.getElementById('sidebarBio');
+const lastUpdate = document.getElementById('lastUpdate');
+
+// 加载保存的设置
 function loadSettings() {
-    const savedSettings = localStorage.getItem('userSettings');
-    if (savedSettings) {
-        const settings = JSON.parse(savedSettings);
-        
-        // 更新个人信息
-        document.getElementById('nameDisplay').textContent = settings.name;
-        document.getElementById('bioDisplay').textContent = settings.bio;
-        document.getElementById('avatar').src = settings.avatar;
-        
-        // 更新侧边栏
-        document.getElementById('sidebarName').textContent = settings.name;
-        document.getElementById('sidebarBio').textContent = settings.bio;
-        document.getElementById('sidebarAvatar').src = settings.avatar;
-        document.getElementById('lastUpdate').textContent = new Date(settings.lastUpdate).toLocaleString();
+    const savedName = localStorage.getItem('userName');
+    const savedBio = localStorage.getItem('userBio');
+    const savedAvatar = localStorage.getItem('userAvatar');
+    const savedLastUpdate = localStorage.getItem('lastUpdate');
+
+    if (savedName) {
+        nameDisplay.textContent = savedName;
+        sidebarName.textContent = savedName;
+    }
+    if (savedBio) {
+        bioDisplay.textContent = savedBio;
+        sidebarBio.textContent = savedBio;
+    }
+    if (savedAvatar) {
+        avatar.src = savedAvatar;
+        sidebarAvatar.src = savedAvatar;
+    }
+    if (savedLastUpdate) {
+        lastUpdate.textContent = savedLastUpdate;
     }
 }
 
@@ -111,9 +120,10 @@ function loadLatestBookmarks() {
     if (savedBookmarks) {
         const bookmarks = JSON.parse(savedBookmarks);
         const bookmarksList = document.getElementById('bookmarksList');
+        bookmarksList.innerHTML = ''; // 清空现有内容
         
-        // 只显示最新的3个收藏
-        bookmarks.slice(0, 3).forEach(bookmark => {
+        // 只显示最新的6个收藏
+        bookmarks.slice(0, 6).forEach(bookmark => {
             const bookmarkElement = document.createElement('div');
             bookmarkElement.className = 'bookmark-card';
             bookmarkElement.innerHTML = `
@@ -125,6 +135,7 @@ function loadLatestBookmarks() {
                         <span class="bookmark-date">${new Date(bookmark.date).toLocaleDateString()}</span>
                         <a href="${bookmark.url}" target="_blank" class="visit-btn">
                             <i class="fas fa-external-link-alt"></i>
+                            访问
                         </a>
                     </div>
                 </div>

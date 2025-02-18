@@ -1,9 +1,10 @@
 /* 作品上传表单样式 */
 .work-form {
     background: var(--surface);
-    padding: 2.5rem;
+    padding: 30px;
     border-radius: var(--radius);
     box-shadow: var(--shadow);
+    width: 100%;
     max-width: 900px;
     margin: 0 auto;
     transition: var(--transition);
@@ -15,11 +16,11 @@
 
 .upload-container {
     text-align: center;
-    padding: 2rem;
+    padding: 30px;
     background: var(--background);
     border-radius: var(--radius);
     border: 2px dashed var(--border);
-    margin-bottom: 1.5rem;
+    margin-bottom: 25px;
     transition: var(--transition);
 }
 
@@ -44,27 +45,72 @@
 
 .preview-images {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1.5rem;
-    padding: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
     background: var(--background);
     border-radius: var(--radius);
-    min-height: 200px;
+    width: 100%;
+    max-width: 100%;
+}
+
+.preview-image-container {
+    position: relative;
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 10px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.preview-image-container:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
 }
 
 .preview-image {
     width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
+    height: auto;
+    min-height: 150px;
+    max-height: 400px;
+    object-fit: contain;
+    border-radius: calc(var(--radius) - 4px);
     transition: var(--transition);
-    cursor: pointer;
 }
 
-.preview-image:hover {
-    transform: scale(1.05);
-    box-shadow: var(--shadow-hover);
+.preview-delete-btn {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #dc3545;
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+    padding: 0;
+}
+
+.preview-image-container:hover .preview-delete-btn {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.preview-delete-btn:hover {
+    background: #c82333;
+    transform: scale(1.1) !important;
+}
+
+.preview-delete-btn i {
+    font-size: 12px;
 }
 
 .form-actions {
@@ -75,8 +121,23 @@
     margin-top: 1.5rem;
 }
 
+.save-btn,
+.cancel-btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: var(--transition);
+}
+
 .save-btn {
     background: var(--primary-color);
+}
+
+.save-btn:hover {
+    background: var(--primary-dark);
 }
 
 .cancel-btn {
@@ -87,31 +148,32 @@
     background: #c82333;
 }
 
+.save-btn i,
+.cancel-btn i {
+    font-size: 1.1rem;
+}
+
 /* 作品展示网格 */
 .works-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-    padding: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 15px 0;
     max-width: 1400px;
     margin: 0 auto;
 }
 
 .work-item {
     position: relative;
-    aspect-ratio: 1;
-    border-radius: var(--radius);
     overflow: hidden;
-    box-shadow: var(--shadow);
-    transition: var(--transition);
-    background: var(--background);
 }
 
 .work-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: var(--transition);
+    transition: transform 0.3s ease;
+}
+
+.work-item:hover img {
+    transform: scale(1.1);
 }
 
 .delete-btn {
@@ -139,10 +201,6 @@
     box-shadow: var(--shadow-hover);
 }
 
-.work-item:hover img {
-    transform: scale(1.1);
-}
-
 .work-item:hover .delete-btn {
     opacity: 1;
     transform: translateY(0);
@@ -155,18 +213,23 @@
 
 /* 响应式调整 */
 @media (max-width: 768px) {
+    .preview-images {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 15px;
+        padding: 15px;
+    }
+    
+    .preview-image {
+        min-height: 120px;
+        max-height: 300px;
+    }
+    
     .work-form {
-        padding: 1.5rem;
-        margin: 1rem;
+        padding: 20px;
     }
     
     .upload-container {
-        padding: 1.5rem;
-    }
-    
-    .preview-images {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        gap: 1rem;
+        padding: 20px;
     }
     
     .form-actions {
@@ -182,4 +245,120 @@
         gap: 1rem;
         padding: 1rem;
     }
+}
+
+/* 修改表单组样式 */
+.form-group {
+    margin-bottom: 25px;
+    text-align: center; /* 居中对齐 */
+}
+
+.form-group label {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 12px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    transition: var(--transition);
+    text-align: left;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px var(--primary-light);
+    outline: none;
+}
+
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* 修改作品展示网格中的标题样式 */
+.work-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    color: white;
+}
+
+.work-info h3 {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.work-info p {
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
+/* 修改作品项样式 */
+.work-item {
+    position: relative;
+    overflow: hidden;
+}
+
+.work-link {
+    display: block;
+    text-decoration: none;
+    color: white;
+}
+
+.work-item img {
+    transition: transform 0.3s ease;
+}
+
+.work-item:hover img {
+    transform: scale(1.1);
+}
+
+.work-item:hover .delete-btn {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.delete-btn:hover {
+    background: rgba(220, 53, 69, 1);
+    transform: rotate(90deg);
+}
+
+/* 修改section标题样式 */
+.section h2 {
+    text-align: center;
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 30px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 3px;
 } 

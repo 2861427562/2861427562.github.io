@@ -168,18 +168,17 @@
 }
 
 .bookmark-content {
-    padding: 1.5rem;
+    padding: 20px;
     flex: 1;
     display: flex;
     flex-direction: column;
 }
 
 .bookmark-title {
-    font-size: 1.2rem;
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
     font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 0.75rem;
-    transition: var(--transition);
+    margin-bottom: 10px;
 }
 
 .bookmark-card:hover .bookmark-title {
@@ -187,10 +186,9 @@
 }
 
 .bookmark-desc {
-    color: var(--text-secondary);
+    font-size: 0.9rem;
     line-height: 1.6;
-    margin-bottom: 1.5rem;
-    flex: 1;
+    color: var(--text-secondary);
 }
 
 .bookmark-actions {

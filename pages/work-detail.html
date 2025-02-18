@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>设置 - 我的个人空间</title>
+    <title>作品详情 - 我的个人空间</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="../css/common.css">
-    <link rel="stylesheet" href="../css/settings.css">
+    <link rel="stylesheet" href="../css/work-detail.css">
 </head>
 <body>
     <button class="sidebar-toggle" id="sidebarToggle">
@@ -31,9 +31,9 @@
             <div class="logo">我的空间</div>
             <div class="nav-links">
                 <a href="../index.html">首页</a>
-                <a href="works.html">作品上传</a>
+                <a href="works.html" class="active">作品上传</a>
                 <a href="bookmarks.html">收藏夹</a>
-                <a href="settings.html" class="settings-btn active">
+                <a href="settings.html" class="settings-btn">
                     <i class="fas fa-cog"></i>
                 </a>
             </div>
@@ -41,29 +41,24 @@
     </nav>
 
     <div class="container">
-        <section class="section">
-            <h2>个人信息设置</h2>
-            <div class="settings-container">
-                <div class="avatar-settings">
-                    <img id="avatarPreview" src="../images/default-avatar.jpg" alt="头像预览">
-                    <button onclick="document.getElementById('avatarInput').click()" class="upload-btn">
-                        <i class="fas fa-camera"></i> 更换头像
-                    </button>
-                    <input type="file" id="avatarInput" hidden accept="image/*">
+        <section class="section work-detail">
+            <div class="work-header">
+                <h2 id="workTitle">作品标题</h2>
+                <div class="work-meta">
+                    <span class="work-date">上传时间：<span id="workDate"></span></span>
                 </div>
-                <div class="info-settings">
-                    <div class="setting-item">
-                        <label>名字</label>
-                        <input type="text" id="nameInput" placeholder="输入你的名字">
-                    </div>
-                    <div class="setting-item">
-                        <label>个人简介</label>
-                        <textarea id="bioInput" placeholder="写一段个人简介..."></textarea>
-                    </div>
-                    <button onclick="saveSettings()" class="save-btn">
-                        <i class="fas fa-save"></i> 保存设置
-                    </button>
+            </div>
+            <div class="work-content">
+                <div class="work-images" id="workImages"></div>
+                <div class="work-description">
+                    <h3>作品说明</h3>
+                    <p id="workDesc"></p>
                 </div>
+            </div>
+            <div class="work-actions">
+                <button onclick="history.back()" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> 返回
+                </button>
             </div>
         </section>
     </div>
@@ -73,6 +68,6 @@
     </button>
 
     <script src="../js/common.js"></script>
-    <script src="../js/settings.js"></script>
+    <script src="../js/work-detail.js"></script>
 </body>
 </html> 

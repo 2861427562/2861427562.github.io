@@ -22,57 +22,66 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// 处理头像上传
-function handleAvatarUpload(event) {
-    const file = event.target.files[0];
-    if (!file) return;
-    
-    const reader = new FileReader();
-    reader.onload = function(e) {
-        document.getElementById('avatarPreview').src = e.target.result;
+// 获取DOM元素
+const avatarInput = document.getElementById('avatarInput');
+const avatarPreview = document.getElementById('avatarPreview');
+const nameInput = document.getElementById('nameInput');
+const bioInput = document.getElementById('bioInput');
+const sidebarAvatar = document.getElementById('sidebarAvatar');
+const sidebarName = document.getElementById('sidebarName');
+const sidebarBio = document.getElementById('sidebarBio');
+
+// 加载保存的设置
+function loadSettings() {
+    const savedName = localStorage.getItem('userName');
+    const savedBio = localStorage.getItem('userBio');
+    const savedAvatar = localStorage.getItem('userAvatar');
+
+    if (savedName) {
+        nameInput.value = savedName;
+        sidebarName.textContent = savedName;
     }
-    reader.readAsDataURL(file);
+    if (savedBio) {
+        bioInput.value = savedBio;
+        sidebarBio.textContent = savedBio;
+    }
+    if (savedAvatar) {
+        avatarPreview.src = savedAvatar;
+        sidebarAvatar.src = savedAvatar;
+    }
 }
 
 // 保存设置
 function saveSettings() {
-    const name = document.getElementById('nameInput').value;
-    const bio = document.getElementById('bioInput').value;
-    const avatar = document.getElementById('avatarPreview').src;
+    const name = nameInput.value;
+    const bio = bioInput.value;
+
+    localStorage.setItem('userName', name);
+    localStorage.setItem('userBio', bio);
     
-    const settings = {
-        name: name,
-        bio: bio,
-        avatar: avatar,
-        lastUpdate: new Date().toISOString()
-    };
+    // 更新侧边栏信息
+    loadSidebarInfo();
     
-    localStorage.setItem('userSettings', JSON.stringify(settings));
-    
-    // 触发设置更新事件
-    const event = new CustomEvent('settingsUpdated', {
-        detail: { settings: settings }
-    });
-    window.dispatchEvent(event);
-    
-    alert('设置已保存');
+    // 更新最后更新时间
+    const now = new Date();
+    const lastUpdateStr = `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}`;
+    localStorage.setItem('lastUpdate', lastUpdateStr);
+    document.getElementById('lastUpdate').textContent = lastUpdateStr;
+
+    alert('设置已保存！');
 }
 
-// 加载设置
-function loadSettings() {
-    const savedSettings = localStorage.getItem('userSettings');
-    if (savedSettings) {
-        const settings = JSON.parse(savedSettings);
-        
-        // 填充表单
-        document.getElementById('nameInput').value = settings.name;
-        document.getElementById('bioInput').value = settings.bio;
-        document.getElementById('avatarPreview').src = settings.avatar;
-        
-        // 更新侧边栏
-        document.getElementById('sidebarName').textContent = settings.name;
-        document.getElementById('sidebarBio').textContent = settings.bio;
-        document.getElementById('sidebarAvatar').src = settings.avatar;
-        document.getElementById('lastUpdate').textContent = new Date(settings.lastUpdate).toLocaleString();
+// 处理头像上传
+function handleAvatarUpload(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const imageData = e.target.result;
+            avatarPreview.src = imageData;
+            sidebarAvatar.src = imageData;
+            localStorage.setItem('userAvatar', imageData);
+        };
+        reader.readAsDataURL(file);
     }
 } 
